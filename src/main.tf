@@ -24,7 +24,7 @@ provider "aws" {
 
 module "tf-state" {
   source      = "./modules/tf-state"
-  bucket_name = "dev1-tf-state-backend"
+  bucket_name = "dev-tf-state-backend"
 }
 
 module "vpc-infra" {
