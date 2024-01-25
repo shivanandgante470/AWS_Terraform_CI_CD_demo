@@ -22,10 +22,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "tf-state" {
-  source      = "./modules/tf-state"
-  bucket_name = "dev-tf-state-backend"
-}
+# module "tf-state" {
+#   source      = "./modules/tf-state"
+#   bucket_name = "dev-tf-state-backend"
+# }
 
 module "vpc-infra" {
   source = "./modules/vpc"
