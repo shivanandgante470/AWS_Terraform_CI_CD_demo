@@ -37,11 +37,21 @@ jobs:
         run: terraform plan
         working-directory: ${{env.ROOT_PATH}}
 
+  manual_approval:
+    name: 'Manual Approval'
+    runs-on: ubuntu-latest
+    needs: [terraform_plan]
+    environment: dev
+
+    steps:
+      - name: Manual Approval
+        id: manual_approval
+        run: echo "Approve or reject the deployment. Provide feedback in the GitHub Actions UI."
 
   terraform_apply:
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
-    needs: [terraform_plan] # Dependency OR depends_on
+    needs: [manual_approval] # Dependency OR depends_on
     environment: dev
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -82,6 +92,7 @@ jobs:
     name: 'Manual Approval'
     runs-on: ubuntu-latest
     needs: [terraform_plan]
+    environment: destroy
 
     steps:
       - name: Manual Approval
@@ -92,7 +103,7 @@ jobs:
     name: 'Terraform Destroy'
     runs-on: ubuntu-latest
     needs: [manual_approval]
-    environment: dev
+    environment: destroy
     defaults:
       run:
         shell: bash
