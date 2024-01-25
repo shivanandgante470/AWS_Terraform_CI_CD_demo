@@ -29,7 +29,6 @@ provider "aws" {
 
 module "vpc-infra" {
   source = "./modules/vpc"
-
   # VPC Input Vars
   vpc_cidr             = local.vpc_cidr
   availability_zones   = local.availability_zones
