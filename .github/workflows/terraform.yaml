@@ -38,7 +38,7 @@ jobs:
         working-directory: ${{env.ROOT_PATH}}
 
   manual_approval_apply:
-    name: 'Manual Approval'
+    name: 'Manual Approval Apply'
     runs-on: ubuntu-latest
     needs: [terraform_plan]
     environment: dev
@@ -89,7 +89,7 @@ jobs:
 
 
   manual_approval_destroy:
-    name: 'Manual Approval'
+    name: 'Manual Approval Destroy'
     runs-on: ubuntu-latest
     needs: [terraform_plan]
     environment: destroy
