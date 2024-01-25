@@ -91,9 +91,9 @@ jobs:
     name: 'Manual Approval'
     runs-on: ubuntu-latest
     needs: [terraform_apply]
-    outputs:
-      env:
-        TF_WORKSPACE_URL: ${{ needs.terraform_apply.outputs.env.TF_WORKSPACE_URL }}
+    # outputs:
+    #   env:
+    #     TF_WORKSPACE_URL: ${{ needs.terraform_apply.outputs.env.TF_WORKSPACE_URL }}
 
     steps:
       - name: Manual Approval
