@@ -40,14 +40,14 @@ module "vpc-infra" {
 
 module "vpc" {
   source      = "./modules/vpc1"
-  cidr_block  = var.cidr_block
+  # cidr_block  = var.cidr_block
 
 }
 
 module "subnet" {
   source            = "./modules/subnet"
-  vpc_id            = var.vpc_id
-  subnet_cidr_block = var.subnet_cidr_block
+  vpc_id            = module.vpc.id
+  # subnet_cidr_block = var.subnet_cidr_block
   depends_on        = [ module.vpc ]
 }
 
