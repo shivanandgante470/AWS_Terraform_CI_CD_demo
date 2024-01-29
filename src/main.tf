@@ -27,6 +27,7 @@ provider "aws" {
 #   bucket_name = "dev-tf-state-backend"
 # }
 
+/*
 module "vpc-infra" {
   source = "./modules/vpc"
   # VPC Input Vars
@@ -35,3 +36,31 @@ module "vpc-infra" {
   public_subnet_cidrs  = local.public_subnet_cidrs
   private_subnet_cidrs = local.private_subnet_cidrs
 }
+*/
+
+module "vpc" {
+  source      = "./modules/vpc1"
+  cidr_block  = var.cidr_block
+
+}
+
+module "subnet" {
+  source            = "./modules/subnet"
+  vpc_id            = var.vpc_id
+  subnet_cidr_block = var.subnet_cidr_block
+  depends_on        = [ module.vpc ]
+}
+
+module "security_group" {
+  source      = "./modules/security_group"
+  vpc_id      = module.vpc.id
+  depends_on  = [ module.subnet, module.vpc ]
+
+}
+
+# module "ec2_instance" {
+#   source            = "./modules/ec2_instance"
+#   ec2_instance_name = var.ec2_instance_name
+#   subnet_id = module.vpc-infra.cc_public_subnets
+#   security_groups = 
+# }
