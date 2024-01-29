@@ -46,14 +46,14 @@ module "vpc1" {
 
 module "subnet" {
   source            = "./modules/subnet"
-  vpc_id            = module.vpc1.id
+  vpc_id            = module.vpc1.vpc_id
   # subnet_cidr_block = var.subnet_cidr_block
   depends_on        = [ module.vpc1 ]
 }
 
 module "security_group" {
   source      = "./modules/security_group"
-  vpc_id      = module.vpc1.id
+  vpc_id      = module.vpc1.vpc_id
   depends_on  = [ module.subnet, module.vpc1 ]
 
 }
