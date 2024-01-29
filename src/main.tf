@@ -48,7 +48,7 @@ module "subnet" {
   source            = "./modules/subnet"
   vpc_id            = module.vpc1.id
   # subnet_cidr_block = var.subnet_cidr_block
-  depends_on        = [ module.vpc ]
+  depends_on        = [ module.vpc1 ]
 }
 
 module "security_group" {
