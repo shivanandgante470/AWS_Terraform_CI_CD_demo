@@ -2,15 +2,16 @@ resource "aws_vpc" "ccVPC" {
   cidr_block       = var.vpc_cidr
   instance_tenancy = "default"
   tags = {
-    Name    = "ccVPC"
-    Project = "CC TF Demo"
+    Name        = "mrt-vpc-useast1-dev-001"
+    Project     = "MRT"
+    Environment = "Dev"
   }
 }
 
 resource "aws_internet_gateway" "ccIGW" {
   vpc_id = aws_vpc.ccVPC.id
   tags = {
-    Name    = "ccIGW"
+    Name    = "mrt-igw-useast1-dev-001"
     Project = "CC TF Demo"
   }
 }
