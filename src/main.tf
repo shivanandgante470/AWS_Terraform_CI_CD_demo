@@ -38,7 +38,7 @@ module "vpc-infra" {
 }
 */
 
-module "vpc" {
+module "vpc1" {
   source      = "./modules/vpc1"
   # cidr_block  = var.cidr_block
 
@@ -46,15 +46,15 @@ module "vpc" {
 
 module "subnet" {
   source            = "./modules/subnet"
-  vpc_id            = module.vpc.id
+  vpc_id            = module.vpc1.id
   # subnet_cidr_block = var.subnet_cidr_block
   depends_on        = [ module.vpc ]
 }
 
 module "security_group" {
   source      = "./modules/security_group"
-  vpc_id      = module.vpc.id
-  depends_on  = [ module.subnet, module.vpc ]
+  vpc_id      = module.vpc1.id
+  depends_on  = [ module.subnet, module.vpc1 ]
 
 }
 
