@@ -40,7 +40,7 @@ module "vpc-infra" {
 
 module "vpc1" {
   source      = "../../terraform/modules/vpc1"
-  vpc_cidr             = local.vpc_cidr
+  cidr_block           = local.vpc_cidr
   availability_zones   = local.availability_zones
   public_subnet_cidrs  = local.public_subnet_cidrs
   private_subnet_cidrs = local.private_subnet_cidrs
@@ -49,7 +49,7 @@ module "vpc1" {
 module "subnet" {
   source            = "../../terraform/modules/subnet"
   vpc_id            = module.vpc1.vpc_id
-  # subnet_cidr_block = var.subnet_cidr_block
+  subnet_cidr_block = var.subnet_cidr_block
   depends_on        = [ module.vpc1 ]
 }
 
