@@ -35,7 +35,7 @@ jobs:
         working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Plan
-        run: terraform plan -var-file "${{env.ENV_PATH}}
+        run: terraform plan -var-file "${{env.ENV_PATH}}"
         working-directory: ${{env.ROOT_PATH}}
 
   manual_approval_apply:
@@ -85,7 +85,7 @@ jobs:
 
     # Actual Provisioning will be create
     - name: Terraform Apply
-      run: terraform apply --auto-approve -var-file "${{env.ENV_PATH}}
+      run: terraform apply --auto-approve -var-file "${{env.ENV_PATH}}"
       working-directory: ${{env.ROOT_PATH}}
 
 
@@ -122,5 +122,5 @@ jobs:
         working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Destroy
-        run: terraform destroy --auto-approve -var-file "${{env.ENV_PATH}}
+        run: terraform destroy --auto-approve -var-file "${{env.ENV_PATH}}"
         working-directory: ${{env.ROOT_PATH}}
