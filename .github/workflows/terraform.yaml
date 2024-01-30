@@ -9,7 +9,8 @@ on:
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  ROOT_PATH: '${{ github.workspace }}/src'
+  ROOT_PATH: '${{ github.workspace }}/terraform/dev_environment'
+  ENV_PATH: '${{ github.workspace }}/terraform/dev_environment/environments/dev.tfvars'
 
 
 jobs:
@@ -34,7 +35,7 @@ jobs:
         working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -var-file "${{env.ENV_PATH}}
         working-directory: ${{env.ROOT_PATH}}
 
   manual_approval_apply:
@@ -84,7 +85,7 @@ jobs:
 
     # Actual Provisioning will be create
     - name: Terraform Apply
-      run: terraform apply --auto-approve
+      run: terraform apply --auto-approve -var-file "${{env.ENV_PATH}}
       working-directory: ${{env.ROOT_PATH}}
 
 
@@ -121,5 +122,5 @@ jobs:
         working-directory: ${{env.ROOT_PATH}}
 
       - name: Terraform Destroy
-        run: terraform destroy --auto-approve
+        run: terraform destroy --auto-approve -var-file "${{env.ENV_PATH}}
         working-directory: ${{env.ROOT_PATH}}

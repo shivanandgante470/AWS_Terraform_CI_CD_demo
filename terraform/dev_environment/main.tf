@@ -40,7 +40,7 @@ module "vpc-infra" {
 
 module "vpc1" {
   source      = "./modules/vpc1"
-  # cidr_block  = var.cidr_block
+  cidr_block  = var.cidr_block
 
 }
 
