@@ -22,7 +22,7 @@ data "aws_ami" "amzlinux2" {
 
 # Define an EC2 instance
 resource "aws_instance" "ec2_instance" {
-  ami             = data.aws_ami.amzlinux2 #"ami-0c55b159cbfafe1f0"  # Example AMI ID (Amazon Linux 2)
+  ami             = data.aws_ami.amzlinux2.id #"ami-0c55b159cbfafe1f0"  # Example AMI ID (Amazon Linux 2)
   instance_type   = var.instance_type #"t2.micro"
   subnet_id       = var.subnet_id
   security_groups = [var.security_groups]
