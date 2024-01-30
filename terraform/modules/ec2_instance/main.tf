@@ -26,6 +26,7 @@ resource "aws_instance" "ec2_instance" {
   instance_type   = var.instance_type #"t2.micro"
   subnet_id       = var.subnet_id
   security_groups = [var.security_groups]
+  associate_public_ip_address = true
 
   tags = {
     Name = var.ec2_instance_name #"dev-us-east-ec2"
