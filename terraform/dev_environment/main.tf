@@ -39,20 +39,20 @@ module "vpc-infra" {
 */
 
 module "vpc1" {
-  source      = "../terraform/modules/vpc"
+  source      = "../../terraform/modules/vpc"
   cidr_block  = var.cidr_block
 
 }
 
 module "subnet" {
-  source            = "../terraform/modules/subnet"
+  source            = "../../terraform/modules/subnet"
   vpc_id            = module.vpc1.vpc_id
   # subnet_cidr_block = var.subnet_cidr_block
   depends_on        = [ module.vpc1 ]
 }
 
 module "security_group" {
-  source      = "../terraform/modules/security_group"
+  source      = "../../terraform/modules/security_group"
   vpc_id      = module.vpc1.vpc_id
   depends_on  = [ module.subnet, module.vpc1 ]
 
