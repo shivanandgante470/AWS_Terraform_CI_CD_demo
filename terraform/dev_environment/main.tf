@@ -61,7 +61,7 @@ module "security_group" {
 }
 
 module "ec2_instance" {
-  source            = "./modules/ec2_instance"
+  source            = "../../terraform/modules/ec2_instance"
   ec2_instance_name = var.ec2_instance_name
   subnet_id         = module.subnet.subnet_id
   security_groups   = module.security_group.security_group_id
