@@ -3,4 +3,4 @@ availability_zones      = ["us-east-1a", "us-east-1b"]
 public_subnet_cidrs     = ["10.0.0.0/24", "10.0.1.0/24"]
 private_subnet_cidrs    = ["10.0.3.0/24", "10.0.4.0/24"]
 subnet_cidr_block       = "10.0.1.0/24"
-instance_type           = "m5.large"#"t2.micro"
+instance_type           = "t2.micro" #"m5.large"
