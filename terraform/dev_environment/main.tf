@@ -54,15 +54,16 @@ module "subnet" {
 }
 
 module "security_group" {
-  source      = "../../terraform/modules/security_group"
-  vpc_id      = module.vpc1.vpc_id
-  depends_on  = [ module.subnet, module.vpc1 ]
+  source            = "../../terraform/modules/security_group"
+  vpc_id            = module.vpc1.vpc_id
+  depends_on        = [ module.subnet, module.vpc1 ]
 
 }
 
-# module "ec2_instance" {
-#   source            = "./modules/ec2_instance"
-#   ec2_instance_name = var.ec2_instance_name
-#   subnet_id = module.vpc-infra.cc_public_subnets
-#   security_groups = 
-# }
+module "ec2_instance" {
+  source            = "./modules/ec2_instance"
+  ec2_instance_name = var.ec2_instance_name
+  subnet_id         = module.subnet.subnet_id
+  security_groups   = module.security_group.security_group_id
+  depends_on        = [ security_group ]
+}
