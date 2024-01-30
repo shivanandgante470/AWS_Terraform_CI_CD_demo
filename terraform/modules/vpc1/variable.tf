@@ -5,15 +5,15 @@ variable "cidr_block" {
 
 variable "availability_zones" {
   type      = list(string)
-  default   = ""
+  default   = [""]
 }
 
 variable "public_subnet_cidrs" {
   type      = list(string)
-  default   = ""
+  default   = [""]
 }
 
 variable "private_subnet_cidrs" {
   type      = list(string)
-  default   = ""
+  default   = [""]
 }
